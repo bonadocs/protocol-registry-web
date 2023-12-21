@@ -1,0 +1,17 @@
+.bonadocs__protocol__dark {
+  --bonadocsProtocolBackground: #0f151a;
+}
+
+.bonadocs__protocol__light {
+  
+}
+
+html {
+  font-size: 62.5%;
+  @media screen and (max-width: 600px) {
+    font-size: 55%;
+  }
+  --bonadocsProtocolBackground: #0f151a;
+  --bonadocsProtocolPrimaryText: #e2e7ef;
+  --bonadocsProtocolSecondaryText: #7f97b4;
+}
