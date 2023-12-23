@@ -9,7 +9,7 @@ export const Sidebar = <
   ...rest
 }: PROPS): JSX.Element => {
   return (
-    <div {...rest}>
+    <div {...rest} className="bonadocs__search__sidebar">
       <Image
         className="bonadocs__search__sidebar__logo"
         src="https://res.cloudinary.com/dfkuxnesz/image/upload/v1701756396/bonadocs-Logo_zilqrl.svg"

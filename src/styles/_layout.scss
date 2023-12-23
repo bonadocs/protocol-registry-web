@@ -1,20 +1,26 @@
 .bonadocs__search {
-  font-family: "Satoshi-Regular", sans-serif;
   display: flex;
   width: 100%;
   background-color: var(--bonadocsProtocolBackground);
+  height: 100vh;
+  @media screen and (max-height: 600px), screen and (max-width: 600px) {
+    min-height: 120rem;
+  }
   &__sidebar {
     width: 15%;
-    height: 100vh;
-    
+
     padding: 1.6rem 2.4rem;
-    background-image: url('https://res.cloudinary.com/dfkuxnesz/image/upload/v1703139844/Container-im_b7daxq.svg');
+    background-image: url("https://res.cloudinary.com/dfkuxnesz/image/upload/v1703139844/Container-im_b7daxq.svg");
     background-repeat: no-repeat;
     background-size: cover;
-    @media screen and (max-height: 600px), 
-       screen and (max-width: 600px) {
-      min-height: 200rem;
+    max-width: 30rem;
+    @media screen and (max-width: 1500px) {
+      width: 16%;
     }
+    @media screen and (max-width: 900px) {
+      display: none;
+    }
+
     &__logo {
       margin-bottom: 6.4rem;
     }
@@ -30,5 +36,107 @@
       font-size: 1.3rem;
     }
   }
-}
+  &__registry {
+    flex: 1;
+    padding: 1.6rem;
 
+    &__header {
+      background-color: var(--bonadocsProtocolSecondaryBackground);
+      padding: 1.2rem;
+      width: 100%;
+      display: flex;
+      height: min-content;
+      &__input {
+        width: 50%;
+        height: min-content;
+
+        border-radius: 0.4rem;
+        font-size: 1.3rem;
+        background-color: var(--bonadocsProtocolBackground);
+        color: var(--bonadocsProtocolPrimaryText);
+        font-size: 1.6rem;
+        background-image: url("https://res.cloudinary.com/dfkuxnesz/image/upload/v1703225363/Search_Bonadocs_Search_Icon_zqz5ro.svg");
+        background-position: 1rem 1rem;
+        padding: 1.2rem 0.8rem 1.2rem 4rem;
+        background-repeat: no-repeat;
+        &::placeholder {
+          color: var(--bonadocsProtocolSecondaryText);
+        }
+      }
+      &__button {
+        padding: 0.4rem 0.8rem;
+        border-radius: 2.4rem !important;
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        border-radius: 0.4rem;
+        background-color: var(--bonadocsProtocolBackground);
+        color: var(--bonadocsProtocolPrimaryText);
+        font-size: 1.4rem;
+        &::placeholder {
+          color: var(--bonadocsProtocolSecondaryText);
+        }
+      }
+    }
+    &__content {
+      padding: 3.2rem 2.4rem;
+      &__title {
+        font-size: 1.3rem;
+        font-weight: 700;
+        line-height: 2.4rem;
+        color: var(--bonadocsProtocolPrimaryText);
+        margin-top: 2.4rem;
+        margin-bottom: 0.8rem;
+      }
+      &__select {
+        border: 1px solid #20262e;
+        background: transparent;
+        width: min-content;
+        color: var(--bonadocsProtocolPrimaryText);
+        padding: 0.8rem 2.4rem 0.8rem 1.6rem;
+        border-radius: 10rem;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background: transparent;
+        background-image: url("https://res.cloudinary.com/dfkuxnesz/image/upload/v1703342137/Project_Details_Container_zndbzp.svg");
+        background-repeat: no-repeat;
+        background-position-x: 95%;
+        background-position-y: 50%;
+      }
+      &__list {
+        display: grid;
+        gap: 1.6rem;
+        grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+        &__item {
+          align-items: center;
+          border-radius: 0.8rem;
+          padding: 1.6rem;
+          border: 1px solid var(--bonadocsProtocolBorder);
+          &__icon {
+            margin-right: 0.4rem;
+          }
+          &__text {
+            font-size: 1.3rem;
+            font-weight: 700;
+            line-height: 2.4rem;
+            color: var(--bonadocsProtocolPrimaryText);
+          }
+          &__id {
+            font-size: 1.2rem;
+            font-weight: 700;
+            line-height: 2.4rem;
+            color: var(--bonadocsProtocolSecondaryText);
+          }
+          &__tag {
+            font-size: 1.3rem;
+            margin-right: 0.9rem;
+          }
+          div {
+            display: flex;
+            align-items: center;
+          }
+        }
+      }
+    }
+  }
+}
