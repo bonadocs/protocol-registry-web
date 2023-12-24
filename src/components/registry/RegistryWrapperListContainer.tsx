@@ -1,7 +1,9 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import { RegistryWrapperListContainerItem } from "./RegistryWrapperListContainerItem";
 import { Option } from "../../app/types";
 import { Overlay } from "../overlay/Overlay";
+import { deepSearch } from "@bonadocs/core";
 
 const options: Option[] = [
   {
@@ -43,9 +45,19 @@ type RegistryWrapperListContainerProps = {
 
 export const RegistryWrapperListContainer: React.FC<
   RegistryWrapperListContainerProps
-> = ({ className }: RegistryWrapperListContainerProps) => {
+  > = ({ className }: RegistryWrapperListContainerProps) => {
+  const [showOverlay, setShowOverlay] = useState(false);
+  const query = async () => {
+    console.log(await deepSearch({ q: "" }));
+  };
+    
+    const closeOverlay = () => { 
+      setShowOverlay(false)
+      document.body.style.overflow = "auto";
+    }
   return (
     <>
+      {/* <button onClick={() => query()}>drfd</button> */}
       <div className={className}>
         {options.map((option, index) => (
           <RegistryWrapperListContainerItem
@@ -53,10 +65,15 @@ export const RegistryWrapperListContainer: React.FC<
             index={index}
             image={option.image}
             tag={option.tag}
+            onClick={() => {
+              setShowOverlay(true)
+              document.body.style.overflow = "hidden";
+            }
+            }
           />
         ))}
       </div>
-      <Overlay />
+      {showOverlay  && <Overlay closeOverlay={closeOverlay}/>}
     </>
   );
 };

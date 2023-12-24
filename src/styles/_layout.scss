@@ -89,7 +89,7 @@
         margin-bottom: 0.8rem;
       }
       &__select {
-        border: 1px solid #20262e;
+        border: 1px solid var(--bonadocsProtocolBorder);
         background: transparent;
         width: min-content;
         color: var(--bonadocsProtocolPrimaryText);
@@ -147,14 +147,104 @@
   }
   &__overlay {
     position: fixed;
-     height: 100vh;
-    background-color: antiquewhite;
+    height: 100%;
+    background-color: var(--bonadocsProtocolOverlay);
     bottom: 0;
     right: 0;
     width: 50%;
-    color: red;
-    @media screen and (max-height: 600px), screen and (max-width: 600px) {
-      min-height: 120rem;
+    min-height: min-content;
+    &__wrapper {
+      position: relative;
+      overflow: auto;
+      height: 100%;
+      padding: 2.4rem;
+      &__resources {
+        color: var(--bonadocsProtocolBlue);
+        text-decoration: underline;
+        font-size: 1.3rem;
+        line-height: 2.4rem;
+        margin-top: .2rem;
+      }
+      &__content {
+        color: var(--bonadocsProtocolSecondaryText);
+        font-size: 1.3rem;
+        line-height: 2.4rem;
+        margin-top: .2rem;
+      }
+      &__subheader {
+        margin-top: 4rem;
+        font-size: 2rem;
+      }
+      &__header {
+        display: flex;
+        width: 100%;
+        margin-top: 2.4rem;
+        &__tag {
+          font-size: 1.3rem;
+          display: flex;
+          &__name {
+            margin-right: 0.4rem;
+          }
+        }
+        &__title {
+          font-size: 2rem;
+          line-height: 3.2rem;
+          font-weight: 700;
+        }
+        &__logo {
+          border: 1px solid var(--bonadocsProtocolBorder);
+          border-radius: 50%;
+          margin-right: 0.8rem;
+        }
+      }
+      &__button {
+        background-color: transparent;
+        cursor: pointer;
+        border: 1px solid var(--bonadocsProtocolBorder);
+        padding: 0.8rem 1.2rem;
+        border-radius: 10rem;
+        color: var(--bonadocsProtocolSecondaryText);
+        display: flex;
+        align-items: center;
+        &__icon {
+          margin-right: 0.8rem;
+          
+        }
+        &__action {
+          background-color: var(--bonadocsProtocolBlue);
+          padding: 0.8rem 1.2rem;
+          border-radius: 10rem;
+          color: var(--bonadocsProtocolSecondaryBackground);
+          display: flex;
+          align-items: center;
+          margin-left: auto;
+          @media screen and (max-width: 600px) {
+            height: min-content;
+            wrap: nowrap;
+          }
+        }
+      }
+    }
+    @media screen and (max-width: 900px) {
+      height: 60vh;
+      bottom: 0;
+      width: 100%;
+    }
+  }
+  &__overlay2 {
+    position: fixed;
+    height: 100vh;
+    background-color: #b8c8ff;
+    opacity: 0.4;
+    bottom: 0;
+    left: 0;
+    width: 50%;
+    @media screen and (max-width: 900px) {
+      height: 40vh;
+      background-color: #b8c8ff;
+      opacity: 0.3;
+      top: 0;
+      width: 100%;
     }
   }
 }
