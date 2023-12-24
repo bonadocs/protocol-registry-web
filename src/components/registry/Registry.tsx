@@ -1,6 +1,7 @@
 import React from "react";
 import { Header } from "../header/Header";
-import {RegistryWrapper} from "./RegistryWrapper";
+import { RegistryWrapper } from "./RegistryWrapper";
+
 interface RegistryProps {}
 
 export const Registry: React.FC = <
