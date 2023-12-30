@@ -8,7 +8,7 @@ export const Header: React.FC = () => {
   const { currentSelection, updateCurrentSelection } = useProtocolContext();
 
   const updateProtocols = (queryText: string) => {
-    updateCurrentSelection({ ...currentSelection, q: queryText });
+    updateCurrentSelection({ ...currentSelection, q: queryText }, false);
   };
 
   return (

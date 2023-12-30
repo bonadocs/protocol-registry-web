@@ -17,11 +17,13 @@ export const RegistryWrapperListContainer: React.FC<
     currentProtocol,
     query,
     loading,
+    currentSelection,
     updateCurrentProtocol,
+    updateCurrentSelection
   } = useProtocolContext();
 
   useEffect(() => {
-    query();
+    updateCurrentSelection(currentSelection);
   }, []);
 
   const closeOverlay = () => {
@@ -43,7 +45,6 @@ export const RegistryWrapperListContainer: React.FC<
             }}
           />
         ))}
-        {/* {loading && <h1>Loading</h1>} */}
       </div>
 
       {showOverlay && (
