@@ -1,11 +1,8 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { RegistryWrapperListContainerItem } from "./RegistryWrapperListContainerItem";
-import { Option } from "../../app/types";
 import { Overlay } from "../overlay/Overlay";
-import { deepSearch, DeepSearchItem, SearchResults } from "@bonadocs/core";
 import { useProtocolContext } from "@/context/ProtocolContext";
-import { Pagination } from "../pagination/Pagination";
 
 type RegistryWrapperListContainerProps = {
   className?: string;
@@ -19,7 +16,7 @@ export const RegistryWrapperListContainer: React.FC<
     searchResults,
     currentProtocol,
     query,
-
+    loading,
     updateCurrentProtocol,
   } = useProtocolContext();
 
@@ -46,7 +43,9 @@ export const RegistryWrapperListContainer: React.FC<
             }}
           />
         ))}
+        {/* {loading && <h1>Loading</h1>} */}
       </div>
+
       {showOverlay && (
         <Overlay
           currentProtocol={currentProtocol}

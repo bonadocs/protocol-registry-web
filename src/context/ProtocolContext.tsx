@@ -5,7 +5,6 @@ import React, {
   useEffect,
   useRef,
   useState,
-  Suspense,
 } from "react";
 import {
   deepSearch,
@@ -22,6 +21,7 @@ interface ProtocolContextProps {
   currentSelection: SearchQuery;
   updateCurrentProtocol: (protocol: DeepSearchItem) => void;
   updateCurrentSelection: (query: SearchQuery) => void;
+  loading: boolean;
 }
 
 // Create the context
@@ -58,10 +58,17 @@ export const ProtocolProvider: React.FC<ProtocolProps> = ({ children }) => {
         };
 
   const currentSelection = useRef<SearchQuery>(storedData as SearchQuery);
-  const loadingRef = useRef<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const updateLoader = () => {
+    setLoading(!loading);
+  };
+
   const query = async () => {
+    updateLoader();
     const searchResults = await deepSearch(currentSelection.current);
     setSearchResults(searchResults);
+    updateLoader();
   };
   const updateCurrentProtocol = (protocol: DeepSearchItem) => {
     setCurrentProtocol(protocol);
@@ -89,9 +96,10 @@ export const ProtocolProvider: React.FC<ProtocolProps> = ({ children }) => {
         currentSelection: currentSelection.current,
         updateCurrentProtocol,
         updateCurrentSelection,
+        loading,
       }}
     >
-      <Suspense fallback={<h1>Loading screen</h1>}>{children}</Suspense>
+      {children}
     </ProtocolContext.Provider>
   );
 };
