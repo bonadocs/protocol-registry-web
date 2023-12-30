@@ -9,9 +9,11 @@
   }
   @media screen and (max-height: 1200px), screen and (max-width: 1200px) {
     height: auto;
+    min-height: min-content;
   }
-  @media screen and (min-height: 1200px), screen and (min-width: 1200px) {
+  @media screen and (min-width: 1200px) {
     height: auto;
+    min-height: 100vh;
   }
 
   &__sidebar {
