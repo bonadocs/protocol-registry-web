@@ -1,11 +1,11 @@
 "use client";
 import React, { ChangeEvent, useRef, useEffect } from "react";
-import { SelectInput } from "../input/SelectInput";
+import { SelectInput } from "../../input/SelectInput";
 import { RegistryWrapperList } from "./RegistryWrapperList";
-import { Header } from "../header/Header";
-import { options } from "../../data";
+import { Header } from "../../header/Header";
+import { options } from "../../../data";
 import { useProtocolContext } from "@/context/ProtocolContext";
-import { Pagination } from "../pagination/Pagination";
+import { Pagination } from "../../pagination/Pagination";
 
 interface RegistryWrapperProps {
   className?: string;
@@ -28,7 +28,7 @@ export const RegistryWrapper: React.FC<RegistryWrapperProps> = React.memo(
     const defaultOption = options.find(
       (option) => option.id === (currentSelection.chainIds ?? [])[0]
     );
-    
+
     return (
       <div className={className}>
         <Header />

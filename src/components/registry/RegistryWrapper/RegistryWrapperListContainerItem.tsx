@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import { Option } from "../../app/types";
+import { Option } from "../../../app/types";
 import { DeepSearchItem } from "@bonadocs/core";
 
 interface RegistryWrapperListContainerItemProps {
@@ -25,7 +25,7 @@ export const RegistryWrapperListContainerItem: React.FC<
           width={24}
           height={24}
           alt="Protocol image"
-          src={item.logo || ''}
+          src={item.logo || ""}
         />
         <h3>{item.name}</h3>
       </div>

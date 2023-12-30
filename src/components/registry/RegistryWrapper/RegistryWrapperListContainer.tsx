@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { RegistryWrapperListContainerItem } from "./RegistryWrapperListContainerItem";
-import { Overlay } from "../overlay/Overlay";
+import { Overlay } from "../../overlay/Overlay";
 import { useProtocolContext } from "@/context/ProtocolContext";
 
 type RegistryWrapperListContainerProps = {
@@ -19,7 +19,7 @@ export const RegistryWrapperListContainer: React.FC<
     loading,
     currentSelection,
     updateCurrentProtocol,
-    updateCurrentSelection
+    updateCurrentSelection,
   } = useProtocolContext();
 
   useEffect(() => {

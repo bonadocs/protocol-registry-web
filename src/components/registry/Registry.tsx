@@ -1,6 +1,6 @@
 import React from "react";
 import { Header } from "../header/Header";
-import { RegistryWrapper } from "./RegistryWrapper";
+import { RegistryWrapper } from "./RegistryWrapper/RegistryWrapper";
 import { ProtocolProvider } from "@/context/ProtocolContext";
 
 interface RegistryProps {}
