@@ -1,12 +1,23 @@
+"use client";
 import React from "react";
 import { Button } from "../button/Button";
+import { TextInput } from "../input/TextInput";
+import { useProtocolContext } from "@/context/ProtocolContext";
 
 export const Header: React.FC = () => {
+  const { currentSelection, updateCurrentSelection } = useProtocolContext();
+
+  const updateProtocols = (queryText: string) => {
+    updateCurrentSelection({ ...currentSelection, q: queryText });
+  };
+
   return (
     <header className="bonadocs__search__registry__header">
-      <input
+      <TextInput
         className="bonadocs__search__registry__header__input"
         placeholder="Search Bonadocs"
+        updateText={updateProtocols}
+        value={currentSelection.q}
       />
       <Button
         className="bonadocs__search__registry__header__button"

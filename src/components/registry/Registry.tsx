@@ -1,6 +1,7 @@
 import React from "react";
 import { Header } from "../header/Header";
 import { RegistryWrapper } from "./RegistryWrapper";
+import { ProtocolProvider } from "@/context/ProtocolContext";
 
 interface RegistryProps {}
 
@@ -12,9 +13,8 @@ export const Registry: React.FC = <
   // Component logic goes here
 
   return (
-    <div className="bonadocs__search__registry">
-      <Header />
-      <RegistryWrapper/>
-    </div>
+    <ProtocolProvider>
+      <RegistryWrapper className="bonadocs__search__registry" />
+    </ProtocolProvider>
   );
 };

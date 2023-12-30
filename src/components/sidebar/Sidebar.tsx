@@ -10,12 +10,10 @@ export const Sidebar = <
 }: PROPS): JSX.Element => {
   return (
     <div {...rest} className="bonadocs__search__sidebar">
-      <Image
+      <img
         className="bonadocs__search__sidebar__logo"
-        src="https://res.cloudinary.com/dfkuxnesz/image/upload/v1701756396/bonadocs-Logo_zilqrl.svg"
+        src="https://res.cloudinary.com/dfkuxnesz/image/upload/v1703894166/Boxed_Wordmark_rov2wn.svg"
         alt="Bonadocs Logo"
-        width={119}
-        height={18}
       />
       <div>
         <h3 className="bonadocs__search__sidebar__title">Search and explore</h3>

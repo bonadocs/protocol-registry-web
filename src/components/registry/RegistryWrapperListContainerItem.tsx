@@ -2,24 +2,22 @@
 import React from "react";
 import Image from "next/image";
 import { Option } from "../../app/types";
+import { DeepSearchItem } from "@bonadocs/core";
 
-type ExtraTypes = {
-  index: string | number;
+interface RegistryWrapperListContainerItemProps {
+  item: DeepSearchItem;
   onClick?: () => void;
-};
-
-type RegistryWrapperListContainerItemProps = Option & ExtraTypes;
+}
 
 export const RegistryWrapperListContainerItem: React.FC<
   RegistryWrapperListContainerItemProps
-> = ({ index, image, tag, onClick }: RegistryWrapperListContainerItemProps) => {
+> = ({ item, onClick }: RegistryWrapperListContainerItemProps) => {
   // Component logic goes here
 
   return (
     <div
-      onClick={onClick}
-      key={index}
       className="bonadocs__search__registry__content__list__item"
+      onClick={onClick}
     >
       <div>
         <Image
@@ -27,15 +25,15 @@ export const RegistryWrapperListContainerItem: React.FC<
           width={24}
           height={24}
           alt="Protocol image"
-          src={image}
+          src={item.logo || ''}
         />
-        <h3>Uniswap v1 Protocol</h3>
+        <h3>{item.name}</h3>
       </div>
       <h2 className="bonadocs__search__registry__content__list__item__id">
         Project ID
       </h2>
       <div>
-        <h5 className="bonadocs__search__registry__content__list__item__tag">{`"${tag}"`}</h5>
+        <h5 className="bonadocs__search__registry__content__list__item__tag">{`"${item.slug}"`}</h5>
         <Image
           width={16}
           height={16}

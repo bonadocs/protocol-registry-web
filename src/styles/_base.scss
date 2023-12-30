@@ -122,3 +122,29 @@ textarea:focus,
 select:focus {
   outline: none;
 }
+
+body {
+  scrollbar-width: thin;          /* "auto" or "thin" */
+  scrollbar-color: var(--bonadocsProtocolBackground) var(--bonadocsProtocolSecondaryBackground);   /* scroll thumb and track */ 
+}
+
+/* Works on Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--bonadocsProtocolBackground) var(--bonadocsProtocolSecondaryBackground);;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--bonadocsProtocolBorder)
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color:  var(--bonadocsProtocolSecondaryText);
+  border-radius: 20px;
+  border: 4px solid var(--bonadocsProtocolBackground);
+}

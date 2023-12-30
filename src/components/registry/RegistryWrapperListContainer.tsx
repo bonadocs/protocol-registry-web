@@ -1,43 +1,11 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { RegistryWrapperListContainerItem } from "./RegistryWrapperListContainerItem";
 import { Option } from "../../app/types";
 import { Overlay } from "../overlay/Overlay";
-import { deepSearch } from "@bonadocs/core";
-
-const options: Option[] = [
-  {
-    name: "Ethereum",
-    image:
-      "https://res.cloudinary.com/dfkuxnesz/image/upload/v1703348572/uni-logo_xhlgp5.svg",
-    tag: "uniswap-v1-protocol",
-  },
-  {
-    name: "Ethereum",
-    image:
-      "https://res.cloudinary.com/dfkuxnesz/image/upload/v1703348572/uni-logo_xhlgp5.svg",
-    tag: "uniswap-v1-protocol",
-  },
-  {
-    name: "Ethereum",
-    image:
-      "https://res.cloudinary.com/dfkuxnesz/image/upload/v1703348572/uni-logo_xhlgp5.svg",
-    tag: "uniswap-v1-protocol",
-  },
-  {
-    name: "Ethereum",
-    image:
-      "https://res.cloudinary.com/dfkuxnesz/image/upload/v1703348572/uni-logo_xhlgp5.svg",
-    tag: "uniswap-v1-protocol",
-  },
-  {
-    name: "Ethereum",
-    image:
-      "https://res.cloudinary.com/dfkuxnesz/image/upload/v1703348572/uni-logo_xhlgp5.svg",
-    tag: "uniswap-v1-protocol",
-  },
-  // Add other options here
-];
+import { deepSearch, DeepSearchItem, SearchResults } from "@bonadocs/core";
+import { useProtocolContext } from "@/context/ProtocolContext";
+import { Pagination } from "../pagination/Pagination";
 
 type RegistryWrapperListContainerProps = {
   className?: string;
@@ -45,35 +13,46 @@ type RegistryWrapperListContainerProps = {
 
 export const RegistryWrapperListContainer: React.FC<
   RegistryWrapperListContainerProps
-  > = ({ className }: RegistryWrapperListContainerProps) => {
+> = ({ className }: RegistryWrapperListContainerProps) => {
   const [showOverlay, setShowOverlay] = useState(false);
-  const query = async () => {
-    console.log(await deepSearch({ q: "" }));
+  const {
+    searchResults,
+    currentProtocol,
+    query,
+
+    updateCurrentProtocol,
+  } = useProtocolContext();
+
+  useEffect(() => {
+    query();
+  }, []);
+
+  const closeOverlay = () => {
+    setShowOverlay(false);
+    document.body.style.overflow = "auto";
   };
-    
-    const closeOverlay = () => { 
-      setShowOverlay(false)
-      document.body.style.overflow = "auto";
-    }
+
   return (
     <>
-      {/* <button onClick={() => query()}>drfd</button> */}
       <div className={className}>
-        {options.map((option, index) => (
+        {searchResults?.items.map((item, index) => (
           <RegistryWrapperListContainerItem
             key={index}
-            index={index}
-            image={option.image}
-            tag={option.tag}
+            item={item}
             onClick={() => {
-              setShowOverlay(true)
+              updateCurrentProtocol(item);
+              setShowOverlay(true);
               document.body.style.overflow = "hidden";
-            }
-            }
+            }}
           />
         ))}
       </div>
-      {showOverlay  && <Overlay closeOverlay={closeOverlay}/>}
+      {showOverlay && (
+        <Overlay
+          currentProtocol={currentProtocol}
+          closeOverlay={closeOverlay}
+        />
+      )}
     </>
   );
 };

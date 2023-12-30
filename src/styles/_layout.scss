@@ -3,9 +3,17 @@
   width: 100%;
   background-color: var(--bonadocsProtocolBackground);
   height: 100vh;
+  overflow: auto;
   @media screen and (max-height: 600px), screen and (max-width: 600px) {
     min-height: 120rem;
   }
+  @media screen and (max-height: 1200px), screen and (max-width: 1200px) {
+    height: auto;
+  }
+  @media screen and (min-height: 1200px), screen and (min-width: 1200px) {
+    height: 100vh;
+  }
+
   &__sidebar {
     width: 15%;
 
@@ -23,6 +31,10 @@
 
     &__logo {
       margin-bottom: 6.4rem;
+      width: 18rem;
+      @media screen and (max-width: 1200px) {
+        width: 12rem;
+      }
     }
     &__title {
       font-size: 2rem;
@@ -39,7 +51,8 @@
   &__registry {
     flex: 1;
     padding: 1.6rem;
-
+    display: flex;
+    flex-direction: column;
     &__header {
       background-color: var(--bonadocsProtocolSecondaryBackground);
       padding: 1.2rem;
@@ -80,6 +93,25 @@
     }
     &__content {
       padding: 3.2rem 2.4rem;
+      &__pagination {
+        margin-top: auto;
+        display: flex;
+        justify-content: center;
+
+        &__item {
+          padding: 0.8rem 1.2rem;
+          border-radius: 10rem;
+          background-color: var(--bonadocsProtocolBackground);
+          color: var(--bonadocsProtocolPrimaryText);
+          font-size: 1.3rem;
+          margin-right: 0.8rem;
+          cursor: pointer;
+          &__active {
+            background-color: var(--bonadocsProtocolBlue);
+            color: var(--bonadocsProtocolSecondaryBackground);
+          }
+        }
+      }
       &__title {
         font-size: 1.3rem;
         font-weight: 700;
@@ -107,9 +139,17 @@
         display: grid;
         gap: 1.6rem;
         grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+        height: min-content;
+        max-height: 80vh;
+        overflow-y: auto;
+        @media screen and (max-height: 600px), screen and (max-width: 600px) {
+          // height: min-content;
+          height: 90rem;
+        }
         &__item {
           align-items: center;
           border-radius: 0.8rem;
+          // min-height: min-content;
           padding: 1.6rem;
           border: 1px solid var(--bonadocsProtocolBorder);
           cursor: pointer;
@@ -163,13 +203,13 @@
         text-decoration: underline;
         font-size: 1.3rem;
         line-height: 2.4rem;
-        margin-top: .2rem;
+        margin-top: 0.2rem;
       }
       &__content {
         color: var(--bonadocsProtocolSecondaryText);
         font-size: 1.3rem;
         line-height: 2.4rem;
-        margin-top: .2rem;
+        margin-top: 0.2rem;
       }
       &__subheader {
         margin-top: 4rem;
@@ -208,7 +248,6 @@
         align-items: center;
         &__icon {
           margin-right: 0.8rem;
-          
         }
         &__action {
           background-color: var(--bonadocsProtocolBlue);
@@ -247,4 +286,37 @@
       width: 100%;
     }
   }
+}
+
+.bonadocs__form {
+  /* This bit sets up the horizontal layout */
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+
+  /* I've used padding so you can see the edges of the elements. */
+  padding: 1px;
+}
+
+input {
+  /* Tell the input to use all the available space */
+  flex-grow: 2;
+  /* And hide the input's outline, so the form looks like the outline */
+  border: none;
+}
+
+/* remove the input focus blue box, it will be in the wrong place. */
+input:focus {
+  outline: none;
+}
+
+/* Add the focus effect to the form so it contains the button */
+.bonadocs__form:focus-within {
+  outline: 1px solid var(--bonadocsProtocolBlue);
+}
+
+.bonadocs__form__button {
+  /* Just a little styling to make it pretty */
+  background: var(--bonadocsProtocolBlue);
+  padding: .8rem 1.2rem;
 }

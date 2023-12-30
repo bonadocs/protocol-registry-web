@@ -1,12 +1,17 @@
 import React from "react";
 import Image from "next/image";
 import { Button } from "../button/Button";
+import { DeepSearchItem } from "@bonadocs/core";
 
 interface OverlayProps {
+  currentProtocol?: DeepSearchItem;
   closeOverlay: () => void;
 }
 
-export const Overlay: React.FC<OverlayProps> = ({ closeOverlay }) => {
+export const Overlay: React.FC<OverlayProps> = ({
+  currentProtocol,
+  closeOverlay,
+}) => {
   return (
     <>
       <div onClick={closeOverlay} className="bonadocs__search__overlay2"></div>
@@ -43,15 +48,15 @@ export const Overlay: React.FC<OverlayProps> = ({ closeOverlay }) => {
               width={56}
               height={56}
               alt="protocol logo"
-              src="https://res.cloudinary.com/dfkuxnesz/image/upload/v1703348572/uni-logo_xhlgp5.svg"
+              src={currentProtocol?.logo}
             />
             <div>
               <h3 className="bonadocs__search__overlay__wrapper__header__title">
-                Uniswap v1 Protocol
+                {currentProtocol?.name}
               </h3>
               <div className="bonadocs__search__overlay__wrapper__header__tag">
                 <span className="bonadocs__search__overlay__wrapper__header__tag__name">
-                  uniswap-v1-protocol
+                  {currentProtocol?.slug} {currentProtocol?.tags[0]}
                 </span>
                 <Image
                   width={16}
@@ -104,29 +109,18 @@ export const Overlay: React.FC<OverlayProps> = ({ closeOverlay }) => {
             The Uniswap V1 Smart Contracts
           </h3>
           <p className="bonadocs__search__overlay__wrapper__content">
-            Uniswap V1 is the first version of the protocol, launched in
-            November 2018 at Devcon 4. Because of its permissionless nature, it
-            will exist for as long as Ethereum does. Designed with simplicity in
-            mind, the Uniswap protocol provides an interface for seamless
-            exchange of ERC20 tokens on Ethereum. By eliminating unnecessary
-            forms of rent extraction and middlemen it allows faster, more
-            efficient exchange. Where it makes tradeoffs, decentralization,
-            censorship resistance, and security are prioritized. Uniswap is open
-            source and functions as a public good. There is no central token or
-            platform fee. No special treatment is given to early investors,
-            adopters, or developers. Token listing is open and free. All smart
-            contract functions are public and all upgrades are opt-in. This site
-            will serve as a project overview for Uniswap - explaining how it
-            works, how to use it, and how to build on top of it. These docs are
-            actively being worked on and more information will be added on an
-            ongoing basis.
+            {currentProtocol?.description}
           </p>
           <h3 className="bonadocs__search__overlay__wrapper__subheader">
             Resources
           </h3>
-          <p className="bonadocs__search__overlay__wrapper__resources">
+          <a
+            href={currentProtocol?.website}
+            target="_blank"
+            className="bonadocs__search__overlay__wrapper__resources"
+          >
             Website
-          </p>
+          </a>
         </div>
       </div>
     </>
