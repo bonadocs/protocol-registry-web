@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 interface PaginationProps {
   totalItems?: number;
@@ -16,6 +16,7 @@ export const Pagination: React.FC<PaginationProps> = ({
   className,
 }) => {
   const [currentPage, setCurrentPage] = useState(page || 1);
+   useEffect(() => {}, [currentPage]);
 
   if (!totalItems) return null;
   if (!itemsPerPage) return null;

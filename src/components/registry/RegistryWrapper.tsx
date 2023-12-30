@@ -9,9 +9,12 @@ import { Pagination } from "../pagination/Pagination";
 
 interface RegistryWrapperProps {
   className?: string;
- }
-export const RegistryWrapper: React.FC<RegistryWrapperProps> = ({className}) => {
-  const { currentSelection, updateCurrentSelection, searchResults } = useProtocolContext();
+}
+export const RegistryWrapper: React.FC<RegistryWrapperProps> = ({
+  className,
+}) => {
+  const { currentSelection, updateCurrentSelection, searchResults } =
+    useProtocolContext();
 
   const updateProtocols = (event: ChangeEvent<HTMLSelectElement>) => {
     const chain = event.target.value;
@@ -22,7 +25,9 @@ export const RegistryWrapper: React.FC<RegistryWrapperProps> = ({className}) => 
     });
   };
 
-  const defaultOption = options.find(option => option.id === (currentSelection.chainIds ?? [])[0]);
+  const defaultOption = options.find(
+    (option) => option.id === (currentSelection.chainIds ?? [])[0]
+  );
 
   return (
     <div className={className}>
@@ -42,7 +47,11 @@ export const RegistryWrapper: React.FC<RegistryWrapperProps> = ({className}) => 
         className="bonadocs__search__registry__content__pagination"
         itemsPerPage={searchResults?.pageSize}
         totalItems={searchResults?.total}
-        page={currentSelection?.page}
+        page={
+          searchResults?.total ?? 0 / (searchResults?.pageSize ?? 0) < (currentSelection.page ?? 0)
+            ? 1
+            : currentSelection?.page
+        }
         onPageChange={(pageNumber) =>
           updateCurrentSelection({
             ...currentSelection,
