@@ -20,7 +20,7 @@ interface ProtocolContextProps {
   currentProtocol: DeepSearchItem | undefined;
   currentSelection: SearchQuery;
   updateCurrentProtocol: (protocol: DeepSearchItem) => void;
-  updateCurrentSelection: (query: SearchQuery, reload?: boolean) => void;
+  updateCurrentSelection: (query: SearchQuery, addLoader?: boolean) => void;
   loading: boolean;
 }
 
@@ -65,12 +65,8 @@ export const ProtocolProvider: React.FC<ProtocolProps> = ({ children }) => {
   };
 
   const query = async () => {
-    try {
-      const searchResults = await deepSearch(currentSelection.current);
-      setSearchResults(searchResults);
-    } catch {
-      
-    }
+    const searchResults = await deepSearch(currentSelection.current);
+    setSearchResults(searchResults);
   };
 
   const updateCurrentProtocol = (protocol: DeepSearchItem) => {
@@ -79,18 +75,24 @@ export const ProtocolProvider: React.FC<ProtocolProps> = ({ children }) => {
 
   const updateCurrentSelection = async (
     searchQuery: SearchQuery,
-    reload: boolean = true
+    addLoader: boolean = true
   ) => {
     currentSelection.current = searchQuery;
     {
-      reload && setSearchResults(null);
+      addLoader && setSearchResults(null);
     }
     {
-      reload && updateLoader(true);
+      addLoader && updateLoader(true);
     }
-    await query();
-    {
-      reload && updateLoader(false);
+    try {
+      await query();
+      {
+        addLoader && updateLoader(false);
+      }
+    } catch (e) {
+      {
+        addLoader && updateLoader(false);
+      }
     }
   };
 
