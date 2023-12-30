@@ -16,17 +16,19 @@ export const Pagination: React.FC<PaginationProps> = ({
   className,
 }) => {
   const [currentPage, setCurrentPage] = useState(page || 1);
-   useEffect(() => {}, [currentPage]);
-
-  if (!totalItems) return null;
-  if (!itemsPerPage) return null;
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
 
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
     onPageChange(pageNumber);
   };
 
+   useEffect(() => {handlePageChange(currentPage)}, [currentPage]);
+
+  if (!totalItems) return null;
+  if (!itemsPerPage) return null;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+  
   const renderPageNumbers = () => {
     const pageNumbers = [];
 

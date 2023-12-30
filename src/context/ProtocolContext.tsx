@@ -60,15 +60,20 @@ export const ProtocolProvider: React.FC<ProtocolProps> = ({ children }) => {
   const currentSelection = useRef<SearchQuery>(storedData as SearchQuery);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const updateLoader = () => {
-    setLoading(!loading);
+  const updateLoader = (state: boolean) => {
+    setLoading(state);
   };
 
   const query = async () => {
-    updateLoader();
-    const searchResults = await deepSearch(currentSelection.current);
-    setSearchResults(searchResults);
-    updateLoader();
+    updateLoader(true);
+    setSearchResults(null);
+    try {
+      const searchResults = await deepSearch(currentSelection.current);
+      setSearchResults(searchResults);
+      updateLoader(false);
+    } catch {
+      updateLoader(false);
+    }
   };
   const updateCurrentProtocol = (protocol: DeepSearchItem) => {
     setCurrentProtocol(protocol);
