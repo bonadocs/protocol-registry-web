@@ -28,19 +28,7 @@ export const RegistryWrapper: React.FC<RegistryWrapperProps> = React.memo(
     const defaultOption = options.find(
       (option) => option.id === (currentSelection.chainIds ?? [])[0]
     );
-
-    const loaderRef = useRef<boolean>(loading);
-
-    useEffect(() => {
-      console.log(loading, loaderRef);
-      //  loaderRef.current = loading;
-      // return () => {
-      //   if (loaderRef.current === loading) {
-      //     loaderRef.current = false;
-      //   }
-      // };
-    }, [loading]);
-
+    
     return (
       <div className={className}>
         <Header />
