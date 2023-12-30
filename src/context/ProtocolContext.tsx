@@ -40,11 +40,13 @@ export const useProtocolContext = (): ProtocolContextProps => {
   return context;
 };
 
-interface ProtocolProps {
+interface ProtocolProviderProps {
   children: React.ReactNode;
 }
 // Create the provider component
-export const ProtocolProvider: React.FC<ProtocolProps> = ({ children }) => {
+export const ProtocolProvider: React.FC<ProtocolProviderProps> = ({
+  children,
+}) => {
   const [searchResults, setSearchResults] = useState<
     SearchResults<DeepSearchItem> | undefined
   >(undefined);
