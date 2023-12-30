@@ -78,21 +78,17 @@ export const ProtocolProvider: React.FC<ProtocolProps> = ({ children }) => {
     addLoader: boolean = true
   ) => {
     currentSelection.current = searchQuery;
-    {
-      addLoader && setSearchResults(null);
+
+    if (addLoader) {
+      setSearchResults(null);
+      updateLoader(true);
     }
-    {
-      addLoader && updateLoader(true);
-    }
+
     try {
       await query();
-      {
-        addLoader && updateLoader(false);
-      }
+      addLoader && updateLoader(false);
     } catch (e) {
-      {
-        addLoader && updateLoader(false);
-      }
+      addLoader && updateLoader(false);
     }
   };
 
