@@ -14,7 +14,7 @@ export const Overlay: React.FC<OverlayProps> = ({
 }) => {
   return (
     <>
-      <div onClick={closeOverlay} className="bonadocs__search__overlay2"></div>
+      <div onClick={closeOverlay} className="bonadocs__search__overlay__blur"></div>
       <div className="bonadocs__search__overlay">
         <div className="bonadocs__search__overlay__wrapper">
           <Button

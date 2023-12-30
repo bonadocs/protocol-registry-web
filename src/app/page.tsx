@@ -1,5 +1,5 @@
-import { Sidebar } from "@/components/sidebar/Sidebar";
-import { Registry } from "@/components/registry/Registry";
+import { Sidebar } from "@/layout/sidebar/Sidebar";
+import { Registry } from "@/layout/registry/Registry";
 import "../styles/main.scss";
 
 export default function Home() {

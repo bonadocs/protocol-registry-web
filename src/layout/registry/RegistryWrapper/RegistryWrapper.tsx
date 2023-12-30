@@ -1,11 +1,11 @@
 "use client";
 import React, { ChangeEvent, useRef, useEffect } from "react";
-import { SelectInput } from "../../input/SelectInput";
+import { SelectInput } from "../../../components/input/SelectInput";
 import { RegistryWrapperList } from "./RegistryWrapperList";
-import { Header } from "../../header/Header";
+import { Header } from "../../../components/header/Header";
 import { options } from "../../../data";
 import { useProtocolContext } from "@/context/ProtocolContext";
-import { Pagination } from "../../pagination/Pagination";
+import { Pagination } from "../../../components/pagination/Pagination";
 
 interface RegistryWrapperProps {
   className?: string;

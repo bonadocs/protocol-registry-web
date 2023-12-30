@@ -74,7 +74,7 @@
         background-position: 1rem 1rem;
         padding: 1.2rem 0.8rem 1.2rem 4rem;
         background-repeat: no-repeat;
-        
+
         &::placeholder {
           color: var(--bonadocsProtocolSecondaryText);
         }
@@ -196,6 +196,22 @@
     right: 0;
     width: 50%;
     min-height: min-content;
+    &__blur {
+      position: fixed;
+      height: 100vh;
+      background-color: #b8c8ff;
+      opacity: 0.4;
+      bottom: 0;
+      left: 0;
+      width: 50%;
+      @media screen and (max-width: 900px) {
+        height: 40vh;
+        background-color: #b8c8ff;
+        opacity: 0.3;
+        top: 0;
+        width: 100%;
+      }
+    }
     &__wrapper {
       position: relative;
       overflow: auto;
@@ -273,22 +289,6 @@
       width: 100%;
     }
   }
-  &__overlay2 {
-    position: fixed;
-    height: 100vh;
-    background-color: #b8c8ff;
-    opacity: 0.4;
-    bottom: 0;
-    left: 0;
-    width: 50%;
-    @media screen and (max-width: 900px) {
-      height: 40vh;
-      background-color: #b8c8ff;
-      opacity: 0.3;
-      top: 0;
-      width: 100%;
-    }
-  }
 }
 
 .bonadocs__form {
@@ -300,8 +300,8 @@
   /* I've used padding so you can see the edges of the elements. */
   padding: 1px;
   @media screen and (max-width: 600px) {
-          width: 80%;
-        }
+    width: 80%;
+  }
 }
 
 input {
