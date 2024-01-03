@@ -15,8 +15,6 @@ export const RegistryWrapperListContainer: React.FC<
   const {
     searchResults,
     currentProtocol,
-    query,
-    loading,
     currentSelection,
     updateCurrentProtocol,
     updateCurrentSelection,
