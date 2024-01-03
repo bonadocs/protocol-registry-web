@@ -48,7 +48,7 @@ export const Overlay: React.FC<OverlayProps> = ({
               width={56}
               height={56}
               alt="protocol logo"
-              src={currentProtocol?.logo}
+              src={currentProtocol?.logo || ''}
             />
             <div>
               <h3 className="bonadocs__search__overlay__wrapper__header__title">
