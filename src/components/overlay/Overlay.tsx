@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 import { Button } from "../button/Button";
 import { DeepSearchItem } from "@bonadocs/core";
 
@@ -43,7 +42,7 @@ export const Overlay: React.FC<OverlayProps> = ({
             Back to Projects
           </Button>
           <div className="bonadocs__search__overlay__wrapper__header">
-            <Image
+            <img
               className="bonadocs__search__overlay__wrapper__header__logo"
               width={56}
               height={56}
