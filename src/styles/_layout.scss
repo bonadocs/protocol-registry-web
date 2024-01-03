@@ -2,15 +2,16 @@
   display: flex;
   width: 100%;
   background-color: var(--bonadocsProtocolBackground);
-  height: 100vh;
-  overflow: auto;
+  min-height: 100vh;
+  overflow-y: auto;
+  
   @media screen and (max-height: 600px), screen and (max-width: 600px) {
-    min-height: 120rem;
+    min-height: 100rem;
   }
-  @media screen and (max-height: 1200px), screen and (max-width: 1200px) {
-    height: auto;
-    min-height: min-content;
-  }
+  // @media screen and (max-height: 1200px), screen and (max-width: 1200px) {
+  //   height: auto;
+  //   min-height: min-content;
+  // }
   @media screen and (min-width: 1200px) {
     height: auto;
     min-height: 100vh;
@@ -147,7 +148,7 @@
         overflow-y: auto;
         @media screen and (max-height: 600px), screen and (max-width: 600px) {
           // height: min-content;
-          height: 90rem;
+          // height: 90rem;
         }
         &__item {
           align-items: center;
@@ -156,6 +157,7 @@
           padding: 1.6rem;
           border: 1px solid var(--bonadocsProtocolBorder);
           cursor: pointer;
+          height: 14rem;
           &:hover {
             background-image: url("https://res.cloudinary.com/dfkuxnesz/image/upload/v1703355677/Gradient_xqretc.svg");
             background-repeat: no-repeat;
