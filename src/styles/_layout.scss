@@ -6,7 +6,7 @@
   overflow-y: auto;
   
   @media screen and (max-height: 600px), screen and (max-width: 600px) {
-    min-height: 100rem;
+    min-height: 95rem;
   }
   // @media screen and (max-height: 1200px), screen and (max-width: 1200px) {
   //   height: auto;
@@ -144,7 +144,7 @@
         gap: 1.6rem;
         grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
         height: min-content;
-        max-height: 80vh;
+        max-height: 70vh;
         overflow-y: auto;
         @media screen and (max-height: 600px), screen and (max-width: 600px) {
           // height: min-content;
