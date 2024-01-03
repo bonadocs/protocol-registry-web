@@ -60,7 +60,7 @@ export const Overlay: React.FC<OverlayProps> = ({
                 <span className="bonadocs__search__overlay__wrapper__header__tag__name">
                   {currentProtocol?.slug} {currentProtocol?.tags[0]}
                 </span>
-                <Image
+                <img
                   width={16}
                   height={16}
                   className="bonadocs__search__registry__content__list__item__icon"

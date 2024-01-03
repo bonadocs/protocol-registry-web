@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import { Option } from "../../../app/types";
 import { DeepSearchItem } from "@bonadocs/core";
 
 interface RegistryWrapperListContainerItemProps {
