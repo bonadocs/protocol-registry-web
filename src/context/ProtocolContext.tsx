@@ -82,7 +82,7 @@ export const ProtocolProvider: React.FC<ProtocolProviderProps> = ({
     currentSelection.current = searchQuery;
 
     if (addLoader) {
-      setSearchResults(null);
+      setSearchResults(undefined);
       updateLoader(true);
     }
 
