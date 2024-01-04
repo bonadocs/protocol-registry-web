@@ -144,11 +144,10 @@
         gap: 1.6rem;
         grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
         height: min-content;
-        max-height: 68vh;
+        max-height: 65vh;
         overflow-y: auto;
         @media screen and (max-height: 600px), screen and (max-width: 600px) {
-          // height: min-content;
-          // height: 90rem;
+           max-height: 67vh;
         }
         &__item {
           align-items: center;
