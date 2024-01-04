@@ -108,7 +108,7 @@ export const Overlay: React.FC<OverlayProps> = ({
             </Button>
           </div>
           <h3 className="bonadocs__search__overlay__wrapper__subheader">
-            The Uniswap V1 Smart Contracts
+            {currentProtocol?.name}
           </h3>
           <p className="bonadocs__search__overlay__wrapper__content">
             {currentProtocol?.description}
