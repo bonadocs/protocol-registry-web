@@ -11,6 +11,7 @@ import {
   DeepSearchItem,
   SearchResults,
   SearchQuery,
+  preIndexDataForSearchDB,
 } from "@bonadocs/core";
 
 // Create the context props
@@ -39,6 +40,8 @@ export const useProtocolContext = (): ProtocolContextProps => {
 
   return context;
 };
+
+preIndexDataForSearchDB().catch(e => console.error(e));
 
 interface ProtocolProviderProps {
   children: React.ReactNode;
