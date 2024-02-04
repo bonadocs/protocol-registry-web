@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@bonadocs/core": "^1.0.1-alpha.5",
+    "@bonadocs/core": "^1.0.1",
     "next": "14.0.3",
     "react": "^18",
     "react-dom": "^18",
