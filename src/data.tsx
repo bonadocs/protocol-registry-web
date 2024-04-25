@@ -9,3 +9,7 @@ export const options: Option[] = [
   { value: "Ethereum", label: "Ethereum", id: 1 },
   { value: "Optimism", label: "Optimism", id: 10 },
 ];
+
+
+// [_, chainSlug, chainName, chainId] =
+//   "binance: BNB Smart Chain Mainnet (56)".match(/(\S+): .+ \((\d+)\)/);
