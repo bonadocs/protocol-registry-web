@@ -22,13 +22,18 @@ export const Pagination: React.FC<PaginationProps> = ({
     onPageChange(pageNumber);
   };
 
-   useEffect(() => {handlePageChange(currentPage)}, [currentPage]);
+  useEffect(() => {
+    handlePageChange(currentPage);
+  }, [currentPage]);
 
   if (!totalItems) return null;
   if (!itemsPerPage) return null;
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
 
-  
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+  if (totalPages === 1 && currentPage !== 1) {
+    setCurrentPage(1);
+  }
+
   const renderPageNumbers = () => {
     const pageNumbers = [];
 

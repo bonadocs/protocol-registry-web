@@ -102,6 +102,12 @@ export const Overlay: React.FC<OverlayProps> = ({
                   />
                 </svg>
               }
+              onClick={() =>
+                window.open(
+                  `https://playground.bonadocs.com/contracts?uri=${currentProtocol?.collection}&id=${currentProtocol?.chainIds[0]}`,
+                  "_blank"
+                )
+              }
               className="bonadocs__search__overlay__wrapper__button__action"
             >
               Open on Bonadocs

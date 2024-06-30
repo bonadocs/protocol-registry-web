@@ -9,6 +9,8 @@ export const Header: React.FC = () => {
 
   const updateProtocols = (queryText: string) => {
     updateCurrentSelection({ ...currentSelection, q: queryText }, false);
+    console.log({ ...currentSelection, q: queryText, page: undefined });
+    
   };
 
   return (

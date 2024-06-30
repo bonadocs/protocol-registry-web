@@ -20,6 +20,7 @@ export const SelectInput: React.FC<SelectInputProps> = ({
   updateChainId,
   defaultOption,
 }) => {
+
   const selectedOptionRef = useRef<Option>(
     defaultOption || { value: "", label: "" }
   );
@@ -58,6 +59,12 @@ export const SelectInput: React.FC<SelectInputProps> = ({
     // Initialize the text content based on the initial selection
     updateDisplayText();
   }, []);
+
+  useEffect((() => {
+    console.log('updated', defaultOption);
+    selectedOptionRef.current = defaultOption || { value: "", label: "" };
+    updateDisplayText();
+  }),[defaultOption])
 
   return (
     <select
