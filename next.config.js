@@ -1,8 +1,6 @@
 module.exports = {
   // Can be safely removed in newer versions of Next.js
-  distDir: "dist",
-  reactStrictMode: true,
-  trailingSlash: true,
+  // distDir: "dist",
   images: {
     remotePatterns: [
       {
