@@ -6,10 +6,9 @@ import { useProtocolContext } from "@/context/ProtocolContext";
 
 export const Header: React.FC = () => {
   const { currentSelection, updateCurrentSelection } = useProtocolContext();
-
+  
   const updateProtocols = (queryText: string) => {
     updateCurrentSelection({ ...currentSelection, q: queryText }, false);
-    console.log({ ...currentSelection, q: queryText, page: undefined });
     
   };
 
@@ -17,7 +16,7 @@ export const Header: React.FC = () => {
     <header className="bonadocs__search__registry__header">
       <TextInput
         className="bonadocs__search__registry__header__input"
-        placeholder="Search Bonadocs"
+        placeholder="Search protocols"
         updateText={updateProtocols}
         value={currentSelection.q}
       />
