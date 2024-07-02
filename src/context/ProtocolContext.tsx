@@ -59,11 +59,11 @@ export const ProtocolProvider: React.FC<ProtocolProviderProps> = ({
   const pathOption = (path: string) =>
     options.find((option) => option.value === path);
 
-  const id = (
-    !!params?.networkName
-      ? [pathOption(params.networkName)?.id as number]
-      : [42161]
-  ) as number[];
+  console.log("network name", pathOption(params.networkName)?.id);
+
+  const id = !!params?.networkName
+    ? [pathOption(params.networkName)?.id ?? 42161]
+    : [42161];
 
   console.log(params, id, options);
 
