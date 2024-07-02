@@ -27,17 +27,17 @@ export const RegistryWrapper: React.FC<RegistryWrapperProps> = React.memo(
 
     const pathname = usePathname();
 
-    // useEffect(() => {
-    //   if (pathname.length > 1) {
-    //     const pathOption = options.find(
-    //       (option) => option.value === pathname.substring(1)
-    //     );
-    //     updateCurrentSelection({
-    //       ...currentSelection,
-    //       chainIds: [pathOption?.id!],
-    //     });
-    //   }
-    // }, []);
+    useEffect(() => {
+      if (pathname.length > 1) {
+        const pathOption = options.find(
+          (option) => option.value === pathname.substring(1)
+        );
+        updateCurrentSelection({
+          ...currentSelection,
+          chainIds: [pathOption?.id!],
+        });
+      }
+    }, []);
 
     return (
       <div className={className}>
