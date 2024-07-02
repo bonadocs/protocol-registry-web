@@ -28,17 +28,12 @@ export const ChainOptions: React.FC = () => {
   };
 
   useEffect(() => {
-    if (pathname.length > 1) {
-      const pathOption = options.find(
-        (option) => option.value === pathname.substring(1)
-      );
-      updateCurrentSelection({
-        ...currentSelection,
-        chainIds: [pathOption?.id!],
-      });
-      setOption(pathOption);
-    }
-  }, []);
+    setOption(
+      options.find(
+        (option) => option.id === (currentSelection.chainIds ?? [])[0]
+      )
+    );
+  }, [currentSelection]);
 
   return (
     <SelectInput

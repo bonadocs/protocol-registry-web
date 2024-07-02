@@ -24,11 +24,21 @@ export const RegistryWrapper: React.FC<RegistryWrapperProps> = React.memo(
   ({ className }) => {
     const { loading, currentSelection, updateCurrentSelection, searchResults } =
       useProtocolContext();
-    const [option, setOption] = useState<Option | undefined>(
-      options.find(
-        (option) => option.id === (currentSelection.chainIds ?? [])[0]
-      ) || options[0]
-    );
+
+    const pathname = usePathname();
+
+    useEffect(() => {
+      if (pathname.length > 1) {
+        const pathOption = options.find(
+          (option) => option.value === pathname.substring(1)
+        );
+        updateCurrentSelection({
+          ...currentSelection,
+          chainIds: [pathOption?.id!],
+        });
+
+      }
+    }, []);
 
     return (
       <div className={className}>
