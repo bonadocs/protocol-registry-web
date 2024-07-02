@@ -23,6 +23,7 @@ export async function generateMetadata({ params }: generateMetadataProps) {
 }
 
 export default function Home() {
+
   return (
     <div className="bonadocs__search">
       <Sidebar />
