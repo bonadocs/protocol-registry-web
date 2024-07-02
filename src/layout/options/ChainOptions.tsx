@@ -2,6 +2,7 @@ import { SelectInput } from "@/components/input/SelectInput";
 import React, { ChangeEvent, useState, useEffect, use } from "react";
 import { useProtocolContext } from "@/context/ProtocolContext";
 import { chainOptions as options } from "../../data/data";
+import { usePathname } from "next/navigation";
 
 interface Option {
   value: string;
@@ -16,6 +17,7 @@ export const ChainOptions: React.FC = () => {
       (option) => option.id === (currentSelection.chainIds ?? [])[0]
     ) || options[0]
   );
+  const pathname = usePathname();
   const updateProtocols = (event: ChangeEvent<HTMLSelectElement>) => {
     const chain = event.target.value;
     const selectedOption = options.find((option) => option.value === chain);
@@ -24,6 +26,19 @@ export const ChainOptions: React.FC = () => {
       chainIds: [selectedOption?.id || 0],
     });
   };
+
+  useEffect(() => {
+    if (pathname.length > 1) {
+      const pathOption = options.find(
+        (option) => option.value === pathname.substring(1)
+      );
+      updateCurrentSelection({
+        ...currentSelection,
+        chainIds: [pathOption?.id!],
+      });
+      setOption(pathOption);
+    }
+  }, []);
 
   return (
     <SelectInput
