@@ -60,7 +60,6 @@ export const ProtocolProvider: React.FC<ProtocolProviderProps> = ({
     options.find((option) => option.value === path.substring(1));
 
   const id = pathname.length > 1 ? [pathOption(pathname)?.id] : [42161];
-  console.log(id);
 
   let storedData =
     pathname.length > 1
@@ -86,11 +85,6 @@ export const ProtocolProvider: React.FC<ProtocolProviderProps> = ({
 
   const query = async () => {
     try {
-      // if (
-      //   currentSelection.current?.chainIds &&
-      //   currentSelection.current?.chainIds[0] !== null
-      // ) {
-      console.log(currentSelection.current);
       const searchResults = await deepSearch(currentSelection.current);
       setSearchResults(searchResults);
 

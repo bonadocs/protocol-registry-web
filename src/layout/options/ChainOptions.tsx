@@ -13,13 +13,9 @@ export const ChainOptions: React.FC = () => {
   const { loading, currentSelection, updateCurrentSelection, searchResults } =
     useProtocolContext();
     const id = currentSelection.chainIds?.slice()!;
-
-    console.log("id", id[0].toString());
     
   const currentOption = () =>
     options.find((option) => option.id?.toString() === id[0].toString());
-
-  console.log("current option", currentOption);
 
   const [option, setOption] = useState<Option | undefined>(currentOption);
 
