@@ -41,7 +41,7 @@ export const useProtocolContext = (): ProtocolContextProps => {
   return context;
 };
 
-preIndexDataForSearchDB().catch(e => console.error(e));
+preIndexDataForSearchDB().catch((e) => console.error(e));
 
 interface ProtocolProviderProps {
   children: React.ReactNode;
@@ -70,9 +70,12 @@ export const ProtocolProvider: React.FC<ProtocolProviderProps> = ({
   };
 
   const query = async () => {
-    
-    const searchResults = await deepSearch(currentSelection.current);
-    setSearchResults(searchResults);
+    try {
+      const searchResults = await deepSearch(currentSelection.current);
+      setSearchResults(searchResults);
+    } catch {
+      console.log("Error in query");
+    }
   };
 
   const updateCurrentProtocol = (protocol: DeepSearchItem) => {
