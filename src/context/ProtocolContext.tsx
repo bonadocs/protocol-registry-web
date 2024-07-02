@@ -71,7 +71,6 @@ export const ProtocolProvider: React.FC<ProtocolProviderProps> = ({
 
   const query = async () => {
     try {
-      
       if (
         currentSelection.current?.chainIds &&
         currentSelection.current?.chainIds[0] !== null
@@ -80,9 +79,8 @@ export const ProtocolProvider: React.FC<ProtocolProviderProps> = ({
         setSearchResults(searchResults);
         console.log(currentSelection.current);
       }
-      
-    } catch {
-      console.log("Error in query");
+    } catch (err) {
+      console.log("Error in query", err);
     }
   };
 
@@ -105,6 +103,7 @@ export const ProtocolProvider: React.FC<ProtocolProviderProps> = ({
       await query();
       addLoader && updateLoader(false);
     } catch (e) {
+      console.log(e);
       addLoader && updateLoader(false);
     }
   };
