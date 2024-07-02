@@ -1,7 +1,5 @@
 "use client";
 
-import { log } from "console";
-import { get } from "http";
 import React, { ChangeEvent, useRef, useState, useEffect } from "react";
 
 interface Option {
@@ -11,14 +9,16 @@ interface Option {
 
 interface SelectInputProps {
   options: Option[];
-  updateChainId: (event: ChangeEvent<HTMLSelectElement>) => void;
+  updateOptions: (event: ChangeEvent<HTMLSelectElement>) => void;
   defaultOption?: Option | undefined;
+  optionName?: string;
 }
 
 export const SelectInput: React.FC<SelectInputProps> = ({
   options,
-  updateChainId,
+  updateOptions,
   defaultOption,
+  optionName
 }) => {
 
   const selectedOptionRef = useRef<Option>(
@@ -36,12 +36,12 @@ export const SelectInput: React.FC<SelectInputProps> = ({
   };
 
   const updateDisplayText = () => {
-    if (selectedOptionRef.current.label.includes("Chain: ") == false) {
+    if (selectedOptionRef.current.label.includes(optionName!) == false) {
       options.map((option, index) => {
         if (selectedOptionRef.current.value === option.value) {
           selectedOptionRef.current = {
             ...selectedOptionRef.current,
-            label: "Chain: " + option.label,
+            label: optionName + ": " + option.label,
           };
         }
       });
@@ -61,7 +61,6 @@ export const SelectInput: React.FC<SelectInputProps> = ({
   }, []);
 
   useEffect((() => {
-    console.log('updated', defaultOption);
     selectedOptionRef.current = defaultOption || { value: "", label: "" };
     updateDisplayText();
   }),[defaultOption])
@@ -73,7 +72,7 @@ export const SelectInput: React.FC<SelectInputProps> = ({
       className="bonadocs__search__registry__content__select"
       onChange={(event) => {
         handleSelectChange(event);
-        updateChainId(event);
+        updateOptions(event);
       }}
       value={selectedOptionRef.current.value}
     >

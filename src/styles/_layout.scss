@@ -97,6 +97,10 @@
     }
     &__content {
       padding: 3.2rem 2.4rem;
+      &__options {
+        display: inline-flex;
+        gap: 1.2rem;
+      }
       &__pagination {
         margin-top: auto;
         display: flex;

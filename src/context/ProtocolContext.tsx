@@ -70,6 +70,8 @@ export const ProtocolProvider: React.FC<ProtocolProviderProps> = ({
   };
 
   const query = async () => {
+    console.log(currentSelection.current);
+    
     const searchResults = await deepSearch(currentSelection.current);
     setSearchResults(searchResults);
   };
