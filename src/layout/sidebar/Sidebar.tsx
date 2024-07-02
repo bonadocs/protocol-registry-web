@@ -12,7 +12,7 @@ export const Sidebar = <
     <div {...rest} className="bonadocs__search__sidebar">
       <img
         className="bonadocs__search__sidebar__logo"
-        src="https://res.cloudinary.com/dfkuxnesz/image/upload/v1703894166/Boxed_Wordmark_rov2wn.svg"
+        src="https://res.cloudinary.com/dfkuxnesz/image/upload/v1719871289/Bonadocs_logo_maatpo.svg"
         alt="Bonadocs Logo"
       />
       <div>

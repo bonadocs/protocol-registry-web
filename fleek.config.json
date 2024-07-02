@@ -1,9 +1,0 @@
-{
-  "sites": [
-    {
-      "slug": "huge-kitchen-most",
-      "distDir": "dist",
-      "buildCommand": "  npm install && npm run build"
-    }
-  ]
-}

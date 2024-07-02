@@ -1,12 +1,14 @@
 "use client";
-import React, { ChangeEvent, useState, useEffect, use } from "react";
-import { SelectInput } from "../../../components/input/SelectInput";
+
+import React, { useState, useEffect } from "react";
 import { RegistryWrapperList } from "./RegistryWrapperList";
 import { Header } from "../../../components/header/Header";
-import { chainOptions as options } from "../../../data/data";
+import { chainOptions as options, tags } from "../../../data/data";
 import { useProtocolContext } from "@/context/ProtocolContext";
 import { Pagination } from "../../../components/pagination/Pagination";
 import { usePathname } from "next/navigation";
+import { ChainOptions } from "@/layout/options/ChainOptions";
+import { TagOptions } from "@/layout/options/TagOptions";
 
 interface RegistryWrapperProps {
   className?: string;
@@ -28,15 +30,6 @@ export const RegistryWrapper: React.FC<RegistryWrapperProps> = React.memo(
       ) || options[0]
     );
 
-    const updateProtocols = (event: ChangeEvent<HTMLSelectElement>) => {
-      const chain = event.target.value;
-      const selectedOption = options.find((option) => option.value === chain);
-      updateCurrentSelection({
-        ...currentSelection,
-        chainIds: [selectedOption?.id || 0],
-      });
-    };
-
     const pathname = usePathname();
 
     useEffect(() => {
@@ -49,7 +42,6 @@ export const RegistryWrapper: React.FC<RegistryWrapperProps> = React.memo(
           chainIds: [pathOption?.id!],
         });
         setOption(pathOption);
-        
       }
     }, []);
 
@@ -57,11 +49,11 @@ export const RegistryWrapper: React.FC<RegistryWrapperProps> = React.memo(
       <div className={className}>
         <Header />
         <div className="bonadocs__search__registry__content">
-          <SelectInput
-            defaultOption={option}
-            options={options}
-            updateChainId={updateProtocols}
-          />
+          <div className="bonadocs__search__registry__content__options">
+            <ChainOptions />
+            <TagOptions />
+          </div>
+
           <h3 className="bonadocs__search__registry__content__title">
             Popular search on Bonadocs today
           </h3>
