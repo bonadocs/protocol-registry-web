@@ -57,7 +57,7 @@ export const ProtocolProvider: React.FC<ProtocolProviderProps> = ({
   const params = useParams<{ networkName: string }>();
 
   const pathOption = (path: string) =>
-    options.find((option) => option.value === path.substring(1));
+    options.find((option) => option.value === path);
 
   const id = (
     !!params?.networkName
@@ -65,13 +65,15 @@ export const ProtocolProvider: React.FC<ProtocolProviderProps> = ({
       : [42161]
   ) as number[];
 
+  console.log(params, id, options);
+
   let storedData =
     // pathname.length > 1
     //   ?
     {
       q: "",
       pageSize: 15,
-      chainIds: [id],
+      chainIds: id,
     };
   // : typeof localStorage !== "undefined" && localStorage.getItem("appData")
   // ? JSON.parse(localStorage.getItem("appData") || "")
