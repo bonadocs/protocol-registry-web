@@ -2,16 +2,13 @@ import type { Metadata, ResolvingMetadata } from "next";
 import { Sidebar } from "@/layout/sidebar/Sidebar";
 import { Registry } from "@/layout/registry/Registry";
 import "../../styles/main.scss";
+import React from "react";
 
-type Props = {
+type generateMetadataProps = {
   params: { networkName: string };
-  searchParams: { [key: string]: string | string[] | undefined };
 };
 
-export async function generateMetadata(
-  { params, searchParams }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata({ params }: generateMetadataProps) {
   // read route params
   const name = params.networkName;
   return {

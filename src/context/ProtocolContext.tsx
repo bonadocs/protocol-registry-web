@@ -13,7 +13,8 @@ import {
   SearchQuery,
   preIndexDataForSearchDB,
 } from "@bonadocs/core";
-
+import { usePathname } from "next/navigation";
+import { chainOptions as options } from "../data/data";
 // Create the context props
 interface ProtocolContextProps {
   searchResults: SearchResults<DeepSearchItem> | undefined;
@@ -41,7 +42,7 @@ export const useProtocolContext = (): ProtocolContextProps => {
   return context;
 };
 
-preIndexDataForSearchDB().catch(e => console.error(e));
+preIndexDataForSearchDB().catch((e) => console.error(e));
 
 interface ProtocolProviderProps {
   children: React.ReactNode;
@@ -53,13 +54,26 @@ export const ProtocolProvider: React.FC<ProtocolProviderProps> = ({
   const [searchResults, setSearchResults] = useState<
     SearchResults<DeepSearchItem> | undefined
   >(undefined);
+  const pathname = usePathname();
+
+  const pathOption = (path: string) =>
+    options.find((option) => option.value === path.substring(1));
+
+  const id = pathname.length > 1 ? [pathOption(pathname)?.id] : [42161];
+
   let storedData =
-    typeof localStorage !== "undefined" && localStorage.getItem("appData")
+    pathname.length > 1
+      ? {
+          q: "",
+          pageSize: 15,
+          chainIds: [id],
+        }
+      : typeof localStorage !== "undefined" && localStorage.getItem("appData")
       ? JSON.parse(localStorage.getItem("appData") || "")
       : {
           q: "",
           pageSize: 15,
-          chainIds: [42161],
+          chainIds: [id],
         };
 
   const currentSelection = useRef<SearchQuery>(storedData as SearchQuery);
@@ -70,10 +84,14 @@ export const ProtocolProvider: React.FC<ProtocolProviderProps> = ({
   };
 
   const query = async () => {
-    console.log(currentSelection.current);
-    
-    const searchResults = await deepSearch(currentSelection.current);
-    setSearchResults(searchResults);
+    try {
+      const searchResults = await deepSearch(currentSelection.current);
+      setSearchResults(searchResults);
+
+      // }
+    } catch (err) {
+      console.log("Error in query", err);
+    }
   };
 
   const updateCurrentProtocol = (protocol: DeepSearchItem) => {
@@ -95,6 +113,7 @@ export const ProtocolProvider: React.FC<ProtocolProviderProps> = ({
       await query();
       addLoader && updateLoader(false);
     } catch (e) {
+      console.log(e);
       addLoader && updateLoader(false);
     }
   };
