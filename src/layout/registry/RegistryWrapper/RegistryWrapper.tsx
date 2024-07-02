@@ -6,7 +6,6 @@ import { Header } from "../../../components/header/Header";
 import { chainOptions as options, tags } from "../../../data/data";
 import { useProtocolContext } from "@/context/ProtocolContext";
 import { Pagination } from "../../../components/pagination/Pagination";
-import { usePathname } from "next/navigation";
 import { ChainOptions } from "@/layout/options/ChainOptions";
 import { TagOptions } from "@/layout/options/TagOptions";
 
@@ -24,20 +23,6 @@ export const RegistryWrapper: React.FC<RegistryWrapperProps> = React.memo(
   ({ className }) => {
     const { loading, currentSelection, updateCurrentSelection, searchResults } =
       useProtocolContext();
-
-    const pathname = usePathname();
-
-    useEffect(() => {
-      if (pathname.length > 1) {
-        const pathOption = options.find(
-          (option) => option.value === pathname.substring(1)
-        );
-        updateCurrentSelection({
-          ...currentSelection,
-          chainIds: [pathOption?.id!],
-        });
-      }
-    }, []);
 
     return (
       <div className={className}>

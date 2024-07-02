@@ -12,12 +12,17 @@ interface Option {
 export const ChainOptions: React.FC = () => {
   const { loading, currentSelection, updateCurrentSelection, searchResults } =
     useProtocolContext();
-  const [option, setOption] = useState<Option | undefined>(
-    options.find(
-      (option) => option.id === (currentSelection.chainIds ?? [])[0]
-    ) || options[0]
-  );
-  const pathname = usePathname();
+    const id = currentSelection.chainIds?.slice()!;
+
+    console.log("id", id[0].toString());
+    
+  const currentOption = () =>
+    options.find((option) => option.id?.toString() === id[0].toString());
+
+  console.log("current option", currentOption);
+
+  const [option, setOption] = useState<Option | undefined>(currentOption);
+
   const updateProtocols = (event: ChangeEvent<HTMLSelectElement>) => {
     const chain = event.target.value;
     const selectedOption = options.find((option) => option.value === chain);
@@ -26,14 +31,6 @@ export const ChainOptions: React.FC = () => {
       chainIds: [selectedOption?.id || 0],
     });
   };
-
-  useEffect(() => {
-    setOption(
-      options.find(
-        (option) => option.id === (currentSelection.chainIds ?? [])[0]
-      )
-    );
-  }, [currentSelection]);
 
   return (
     <SelectInput
