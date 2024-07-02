@@ -30,21 +30,6 @@ export const RegistryWrapper: React.FC<RegistryWrapperProps> = React.memo(
       ) || options[0]
     );
 
-    const pathname = usePathname();
-
-    useEffect(() => {
-      if (pathname.length > 1) {
-        const pathOption = options.find(
-          (option) => option.value === pathname.substring(1)
-        );
-        updateCurrentSelection({
-          ...currentSelection,
-          chainIds: [pathOption?.id!],
-        });
-        setOption(pathOption);
-      }
-    }, []);
-
     return (
       <div className={className}>
         <Header />

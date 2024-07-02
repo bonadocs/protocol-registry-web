@@ -71,8 +71,16 @@ export const ProtocolProvider: React.FC<ProtocolProviderProps> = ({
 
   const query = async () => {
     try {
-      const searchResults = await deepSearch(currentSelection.current);
-      setSearchResults(searchResults);
+      
+      if (
+        currentSelection.current?.chainIds &&
+        currentSelection.current?.chainIds[0] !== null
+      ) {
+        const searchResults = await deepSearch(currentSelection.current);
+        setSearchResults(searchResults);
+        console.log(currentSelection.current);
+      }
+      
     } catch {
       console.log("Error in query");
     }

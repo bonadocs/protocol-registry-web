@@ -3,12 +3,13 @@ import { Sidebar } from "@/layout/sidebar/Sidebar";
 import { Registry } from "@/layout/registry/Registry";
 import "../../styles/main.scss";
 
-type Props = {
+type generateMetadataProps = {
   params: { networkName: string };
-  searchParams: { [key: string]: string | string[] | undefined };
 };
 
-export async function generateMetadata({ params, searchParams }: Props) {
+export async function generateMetadata({
+  params
+}: generateMetadataProps) {
   // read route params
   const name = params.networkName;
   return {
