@@ -13,7 +13,7 @@ import {
   SearchQuery,
   preIndexDataForSearchDB,
 } from "@bonadocs/core";
-import { usePathname, useParams } from "next/navigation";
+import { useSearchParams, useParams } from "next/navigation";
 import { chainOptions as options } from "../data/data";
 // Create the context props
 interface ProtocolContextProps {
@@ -55,33 +55,22 @@ export const ProtocolProvider: React.FC<ProtocolProviderProps> = ({
     SearchResults<DeepSearchItem> | undefined
   >(undefined);
   const params = useParams<{ networkName: string }>();
-
+  const searchParams = useSearchParams();
+  const chain = searchParams.get("chain");
   const pathOption = (path: string) =>
     options.find((option) => option.value === path);
 
-  console.log("network name", pathOption(params.networkName)?.id);
-
   const id = !!params?.networkName
     ? [pathOption(params.networkName)?.id ?? 42161]
+    : !!chain
+    ? [pathOption(chain)?.id ?? 42161]
     : [42161];
 
-  console.log(params, id, options);
-
-  let storedData =
-    // pathname.length > 1
-    //   ?
-    {
-      q: "",
-      pageSize: 15,
-      chainIds: id,
-    };
-  // : typeof localStorage !== "undefined" && localStorage.getItem("appData")
-  // ? JSON.parse(localStorage.getItem("appData") || "")
-  // : {
-  //     q: "",
-  //     pageSize: 15,
-  //     chainIds: [id],
-  //   };
+  let storedData = {
+    q: "",
+    pageSize: 15,
+    chainIds: id,
+  };
 
   const [currentSelection, setCurrentSelection] = useState<SearchQuery>(
     storedData as any
@@ -95,7 +84,7 @@ export const ProtocolProvider: React.FC<ProtocolProviderProps> = ({
   const query = async () => {
     try {
       console.log(currentSelection);
-      
+
       const searchResults = await deepSearch(currentSelection);
       setSearchResults(searchResults);
 

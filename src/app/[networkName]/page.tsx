@@ -2,6 +2,8 @@ import type { Metadata, ResolvingMetadata } from "next";
 import { Sidebar } from "@/layout/sidebar/Sidebar";
 import { Registry } from "@/layout/registry/Registry";
 import "../../styles/main.scss";
+import { chainOptions } from "@/data/data";
+import { deepSearch } from "@bonadocs/core";
 import React from "react";
 
 type generateMetadataProps = {
@@ -23,7 +25,6 @@ export async function generateMetadata({ params }: generateMetadataProps) {
 }
 
 export default function Home() {
-
   return (
     <div className="bonadocs__search">
       <Sidebar />
