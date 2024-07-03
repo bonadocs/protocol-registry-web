@@ -23,6 +23,8 @@ export const RegistryWrapper: React.FC<RegistryWrapperProps> = React.memo(
   ({ className }) => {
     const { loading, currentSelection, updateCurrentSelection, searchResults } =
       useProtocolContext();
+    
+   
 
     return (
       <div className={className}>

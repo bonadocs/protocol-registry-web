@@ -2,17 +2,16 @@ import type { Metadata, ResolvingMetadata } from "next";
 import { Sidebar } from "@/layout/sidebar/Sidebar";
 import { Registry } from "@/layout/registry/Registry";
 import "../../styles/main.scss";
-import { chainOptions } from "@/data/data";
-import { deepSearch } from "@bonadocs/core";
 import React from "react";
 
 type generateMetadataProps = {
   params: { networkName: string };
+  searchParams: URLSearchParams;
 };
 
-export async function generateMetadata({ params }: generateMetadataProps) {
+export async function generateMetadata({ params, searchParams }: generateMetadataProps) {
   // read route params
-  const name = params.networkName;
+  const name = params.networkName ?? searchParams.get("chain");
   return {
     title: `${name.charAt(0).toUpperCase() + name.slice(1)} Protocol Registry`,
     description: `Explore ${name} protocols and their documentation`,
