@@ -84,9 +84,12 @@ export const ProtocolProvider: React.FC<ProtocolProviderProps> = ({
   const query = async () => {
     try {
       console.log(currentSelection);
-
+      
+      console.time("doStuff");
       const searchResults = await deepSearch(currentSelection);
+      console.timeEnd("doStuff");
       setSearchResults(searchResults);
+      
 
       // }
     } catch (err) {
@@ -104,6 +107,7 @@ export const ProtocolProvider: React.FC<ProtocolProviderProps> = ({
   ) => {
     // currentSelection.current = searchQuery;
     setCurrentSelection(searchQuery);
+    // console.log('loading', loading)
     if (addLoader) {
       setSearchResults(undefined);
       updateLoader(true);

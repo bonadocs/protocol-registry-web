@@ -1,8 +1,6 @@
-import type { Metadata, ResolvingMetadata } from "next";
-import { Sidebar } from "@/layout/sidebar/Sidebar";
-import { Registry } from "@/layout/registry/Registry";
-import "../../styles/main.scss";
 import React from "react";
+import { HomeWrapper } from "@/layout/HomeWrapper";
+import "../../styles/main.scss";
 
 type generateMetadataProps = {
   params: { networkName: string };
@@ -24,10 +22,6 @@ export async function generateMetadata({ params, searchParams }: generateMetadat
 }
 
 export default function Home() {
-  return (
-    <div className="bonadocs__search">
-      <Sidebar />
-      <Registry />
-    </div>
-  );
+  return <HomeWrapper />;
 }
+
