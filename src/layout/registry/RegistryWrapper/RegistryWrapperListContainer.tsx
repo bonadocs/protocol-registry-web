@@ -20,9 +20,7 @@ export const RegistryWrapperListContainer: React.FC<
     updateCurrentSelection,
   } = useProtocolContext();
 
-  useEffect(() => {
-    updateCurrentSelection(currentSelection);
-  }, []);
+   useEffect(() => {updateCurrentSelection(currentSelection)}, [currentSelection]);
 
   const closeOverlay = () => {
     setShowOverlay(false);

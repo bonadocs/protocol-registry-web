@@ -1,8 +1,9 @@
+"use client";
 import React from "react";
 import { Header } from "../../components/header/Header";
 import { RegistryWrapper } from "./RegistryWrapper/RegistryWrapper";
 import { ProtocolProvider } from "@/context/ProtocolContext";
-
+import { Suspense } from "react";
 interface RegistryProps {}
 
 export const Registry: React.FC = <
@@ -13,8 +14,10 @@ export const Registry: React.FC = <
   // Component logic goes here
 
   return (
-    <ProtocolProvider>
-      <RegistryWrapper className="bonadocs__search__registry" />
-    </ProtocolProvider>
+    <Suspense>
+      <ProtocolProvider>
+        <RegistryWrapper className="bonadocs__search__registry" />
+      </ProtocolProvider>
+    </Suspense>
   );
 };

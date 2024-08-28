@@ -15,7 +15,7 @@ export const ChainOptions: React.FC = () => {
     const id = currentSelection.chainIds?.slice()!;
     
   const currentOption = () =>
-    options.find((option) => option.id?.toString() === id[0].toString());
+    options.find((option) => option.id?.toString() === id.toString());
 
   const [option, setOption] = useState<Option | undefined>(currentOption);
 
