@@ -86,6 +86,7 @@ export const ProtocolProvider: React.FC<ProtocolProviderProps> = ({
       console.log(currentSelection);
       
       console.time("doStuff");
+      
       const searchResults = await deepSearch(currentSelection);
       console.timeEnd("doStuff");
       setSearchResults(searchResults);
@@ -94,6 +95,7 @@ export const ProtocolProvider: React.FC<ProtocolProviderProps> = ({
       // }
     } catch (err) {
       console.log("Error in query", err);
+      
     }
   };
 
