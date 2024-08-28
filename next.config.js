@@ -9,7 +9,7 @@ module.exports = {
       },
     ],
   },
-  output: "export",
+  // output: "export",
 
   // future: {
   //   // by default, if you customize webpack config, they switch back to version 4.
