@@ -13,7 +13,7 @@ import {
   SearchQuery,
   preIndexDataForSearchDB,
 } from "@bonadocs/core";
-import { usePathname } from "next/navigation";
+import { useSearchParams, useParams } from "next/navigation";
 import { chainOptions as options } from "../data/data";
 // Create the context props
 interface ProtocolContextProps {
@@ -54,29 +54,27 @@ export const ProtocolProvider: React.FC<ProtocolProviderProps> = ({
   const [searchResults, setSearchResults] = useState<
     SearchResults<DeepSearchItem> | undefined
   >(undefined);
-  const pathname = usePathname();
-
+  const params = useParams<{ networkName: string }>();
+  const searchParams = useSearchParams();
+  const chain = searchParams.get("chain");
   const pathOption = (path: string) =>
-    options.find((option) => option.value === path.substring(1));
+    options.find((option) => option.value === path);
 
-  const id = pathname.length > 1 ? [pathOption(pathname)?.id] : [42161];
+  const id = !!params?.networkName
+    ? [pathOption(params.networkName)?.id ?? 42161]
+    : !!chain
+    ? [pathOption(chain)?.id ?? 42161]
+    : [42161];
 
-  let storedData =
-    pathname.length > 1
-      ? {
-          q: "",
-          pageSize: 15,
-          chainIds: [id],
-        }
-      : typeof localStorage !== "undefined" && localStorage.getItem("appData")
-      ? JSON.parse(localStorage.getItem("appData") || "")
-      : {
-          q: "",
-          pageSize: 15,
-          chainIds: [id],
-        };
+  let storedData = {
+    q: "",
+    pageSize: 15,
+    chainIds: id,
+  };
 
-  const currentSelection = useRef<SearchQuery>(storedData as SearchQuery);
+  const [currentSelection, setCurrentSelection] = useState<SearchQuery>(
+    storedData as any
+  );
   const [loading, setLoading] = useState<boolean>(false);
 
   const updateLoader = (state: boolean) => {
@@ -85,12 +83,19 @@ export const ProtocolProvider: React.FC<ProtocolProviderProps> = ({
 
   const query = async () => {
     try {
-      const searchResults = await deepSearch(currentSelection.current);
+      console.log(currentSelection);
+      
+      console.time("doStuff");
+      
+      const searchResults = await deepSearch(currentSelection);
+      console.timeEnd("doStuff");
       setSearchResults(searchResults);
+      
 
       // }
     } catch (err) {
       console.log("Error in query", err);
+      
     }
   };
 
@@ -102,8 +107,9 @@ export const ProtocolProvider: React.FC<ProtocolProviderProps> = ({
     searchQuery: SearchQuery,
     addLoader: boolean = true
   ) => {
-    currentSelection.current = searchQuery;
-
+    // currentSelection.current = searchQuery;
+    setCurrentSelection(searchQuery);
+    // console.log('loading', loading)
     if (addLoader) {
       setSearchResults(undefined);
       updateLoader(true);
@@ -120,11 +126,11 @@ export const ProtocolProvider: React.FC<ProtocolProviderProps> = ({
 
   const [currentProtocol, setCurrentProtocol] = useState<DeepSearchItem>();
 
-  useEffect(() => {
-    // Update local storage when data changes
+  // useEffect(() => {
+  //   // Update local storage when data changes
 
-    localStorage.setItem("appData", JSON.stringify(currentSelection.current));
-  }, [currentSelection.current]);
+  //   localStorage.setItem("appData", JSON.stringify(currentSelection));
+  // }, [currentSelection]);
 
   return (
     <ProtocolContext.Provider
@@ -132,7 +138,7 @@ export const ProtocolProvider: React.FC<ProtocolProviderProps> = ({
         searchResults,
         query,
         currentProtocol,
-        currentSelection: currentSelection.current,
+        currentSelection: currentSelection,
         updateCurrentProtocol,
         updateCurrentSelection,
         loading,
